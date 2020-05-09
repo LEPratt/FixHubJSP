@@ -48,7 +48,7 @@ pageEncoding="UTF-8"%>
     <!-- End Navbar -->
 
 
-    <div class="page-header page-header-small" data-parallax="true"
+    <div class="page-header page-header-xs" data-parallax="true"
         style="background-image: url('assets/img/oil.jpg');">
         <h3 class="presentation-subtitle ">${msg}</h3>
         <div class="filter"></div>
@@ -167,7 +167,7 @@ pageEncoding="UTF-8"%>
                     <div class="col-md-10 col-lg-12">
                       <div class="section font-weight-normal">
     
-                        <form action="skills" method="GET">
+                        <form action="searchSkills" method="GET">
                           <input type="search" name="skill" class="input-lg" placeholder="Enter Skill Name...">
                           <button type="submit" class="btn btn-main btn-small btn-round">Search</button>
                         </form>

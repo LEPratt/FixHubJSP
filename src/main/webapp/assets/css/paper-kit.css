@@ -6640,6 +6640,11 @@ License - nucleoapp.com/license/
   z-index: 1;
 }
 
+.page-header.page-header-med {
+  min-height: 90vh !important;
+  max-height: 700px;
+}
+
 .page-header.page-header-small {
   min-height: 65vh !important;
   max-height: 700px;
@@ -6824,8 +6829,10 @@ License - nucleoapp.com/license/
   background: -ms-linear-gradient(top, #FFFFFF 35%, #4e6773 100%);
   background: linear-gradient(to bottom, #FFFFFF 35%, #4e6773 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;  
+
 }
+
 
 .presentation-subtitle {
   font-size: 1.7em;
@@ -8210,6 +8217,48 @@ License - nucleoapp.com/license/
 .about-title p {color: #7a7a7a;line-height: 1.8;margin: 0 0 15px;}
 .about-paddingB {padding-bottom: 12px;}
 .about-img {padding-left: 57px;}
+
+
+.index-title {font-size: 8em;
+  font-weight: 700;
+  margin: 0;
+  color: #FFFFFF;
+  background: #fbf8ec;
+  background: -moz-linear-gradient(top, #FFFFFF 35%, #4e6773 100%);
+  background: -webkit-linear-gradient(top, #FFFFFF 35%, #4e6773 100%);
+  background: -ms-linear-gradient(top, #FFFFFF 35%, #4e6773 100%);
+  background: linear-gradient(to bottom, #FFFFFF 35%, #4e6773 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;}
+.index-title h1 {font-size: 8em;
+  font-weight: 700;
+  margin: 0;
+  color: #FFFFFF;
+  background: #fbf8ec;
+  background: -moz-linear-gradient(top, #FFFFFF 35%, #4e6773 100%);
+  background: -webkit-linear-gradient(top, #FFFFFF 35%, #4e6773 100%);
+  background: -ms-linear-gradient(top, #FFFFFF 35%, #4e6773 100%);
+  background: linear-gradient(to bottom, #FFFFFF 35%, #4e6773 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;}
+
+.index-title span {
+  font-weight: 700;
+  margin: 0;
+  color: #AF0808;
+  background: #AF0808;
+  background: -moz-linear-gradient(top, #AF0808 35%, rgb(144, 7, 7) 100%);
+  background: -webkit-linear-gradient(top, #AF0808 35%, #rgb(144, 7, 7) 100%);
+  background: -ms-linear-gradient(top, #AF0808 35%, #rgb(144, 7, 7) 100%);
+  background: linear-gradient(to bottom, #AF0808 35%, #rgb(144, 7, 7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;}
+  }
+.index-title h3 {color: #535353; font-size:45px;margin-bottom:24px;}  
+
+
+
+
 
 /* Social Icons */
 .about-icons {margin:48px 0px 48px 0px ;}

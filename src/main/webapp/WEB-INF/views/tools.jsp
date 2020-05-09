@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
   <!-- End Navbar -->
 
 
-  <div class="page-header page-header-small" data-parallax="true"
+  <div class="page-header page-header-xs" data-parallax="true"
     style="background-image: url('assets/img/sockets.jpg');">
     <h3 class="presentation-subtitle ">${msg}</h3>
     <div class="filter"></div>
@@ -82,7 +82,7 @@ pageEncoding="UTF-8"%>
             <!-- Tab Panes -->
             <div class="tab-content info">
               <!-- Tool Requests Tab -->
-              <div class="tab-pane ${active=='tab1'? 'active' : ''}" id="toolRequests" role="tabpanel">
+              <div class="tab-pane text-center ${active=='tab1'? 'active' : ''}" id="toolRequests" role="tabpanel">
                 <div class="section allusers-content font-weight-normal">
 
                   <div class="container">
@@ -105,10 +105,10 @@ pageEncoding="UTF-8"%>
                             <td>${item.toolRequested}</td>
                             <td>${item.user.address.city}</td>
                             <fmt:parseDate value= "${item.pickUp}" pattern="yyyy-MM-dd" var="parsedPickUp" />
-                            <fmt:formatDate value= "${parsedPickUp}" pattern="MM/dd/yyy" var="formattedPickUp" />
+                            <fmt:formatDate value= "${parsedPickUp}" pattern="MM/dd/yyyy" var="formattedPickUp" />
                             <td>${formattedPickUp}</td>
                             <fmt:parseDate value= "${item.returnDate}" pattern="yyyy-MM-dd" var="parsedReturnDate" />
-                            <fmt:formatDate value= "${parsedReturnDate}" pattern="MM/dd/yyy" var="formattedReturnDate" />
+                            <fmt:formatDate value= "${parsedReturnDate}" pattern="MM/dd/yyyy" var="formattedReturnDate" />
                             <td>${formattedReturnDate}</td>
 
                             <td> <a class="text-danger" href="#" data-toggle="modal" data-target="#email${item.user.id}"
@@ -164,7 +164,7 @@ pageEncoding="UTF-8"%>
                 <div class="col-md-10 col-lg-12">
                   <div class="section font-weight-normal">
 
-                    <form action="tools" method="GET">
+                    <form action="searchTools" method="GET">
                       <input type="search" name="tool" class="input-lg" placeholder="Enter Tool Name...">
                       <button type="submit" class="btn btn-main btn-small btn-round">Search</button>
                     </form>
@@ -181,17 +181,17 @@ pageEncoding="UTF-8"%>
 
                       <tbody>
                         <c:if test="${not empty results}">
-                          <c:forEach var="item" items="${results}">
-                            <c:if test="${item.status eq 'Available'}">
+                          <c:forEach var="foundTool" items="${results}">
+                            <c:if test="${foundTool.status eq 'Available'}">
                               <tr>
-                                <td>${item.tool}</td>
-                                <td>${item.type}</td>
-                                <td>${item.user.address.city}</td>
+                                <td>${foundTool.tool}</td>
+                                <td>${foundTool.type}</td>
+                                <td>${foundTool.user.address.city}</td>
 
                                 <td> <a class="text-danger" href="#" data-toggle="modal"
-                                    data-target="#email${item.user.id}" title="Email ${item.tool}'s owner">Email</a>
+                                    data-target="#email${foundTool.user.id}" title="Email ${item.tool}'s owner">Email</a>
                                   <!-- Send Email to Tool Owner Model -->
-                                  <div class="modal fade" id="email${item.user.id}">
+                                  <div class="modal fade" id="email${foundTool.user.id}">
                                     <div class="modal-dialog modal-md">
                                       <div class="modal-content">
                                         <!-- Contact Form -->
@@ -202,7 +202,7 @@ pageEncoding="UTF-8"%>
                                                 name="name" id="name" required>
                                             </div>
                                             <div class="form-group">
-                                              <input type="hidden" name="to" id="to" value="${item.user.email}">
+                                              <input type="hidden" name="to" id="to" value="${foundTool.user.email}">
                                               <input type="hidden" name="page" id="page" value="${page}">
                                               <input type="email" placeholder="Your Email" class="form-control"
                                                 name="from" id="from" required>
@@ -266,10 +266,10 @@ pageEncoding="UTF-8"%>
                             <td> ${req.toolRequested}</td>
                             <td> ${req.user.address.city}</td>
                             <fmt:parseDate value= "${req.pickUp}" pattern="yyyy-MM-dd" var="parsedPickUp" />
-                            <fmt:formatDate value= "${parsedPickUp}" pattern="MM/dd/yyy" var="formattedPickUp" />
+                            <fmt:formatDate value= "${parsedPickUp}" pattern="MM/dd/yyyy" var="formattedPickUp" />
                             <td>${formattedPickUp}</td>
                             <fmt:parseDate value= "${req.returnDate}" pattern="yyyy-MM-dd" var="parsedReturnDate" />
-                            <fmt:formatDate value= "${parsedReturnDate}" pattern="MM/dd/yyy" var="formattedReturnDate" />
+                            <fmt:formatDate value= "${parsedReturnDate}" pattern="MM/dd/yyyy" var="formattedReturnDate" />
                             <td>${formattedReturnDate}</td>
                             
                             <td>

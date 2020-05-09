@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
     <jsp:include page="header.jsp" />
     <!-- End Navbar -->
 
-    <div class="page-header page-header-small" data-parallax="true"
+    <div class="page-header page-header-xs" data-parallax="true"
         style="background-image: url('assets/img/redcar.jpg');">
         <h3 class="presentation-subtitle ">${msg} ${success}</h3>
     </div>
@@ -87,8 +87,8 @@ pageEncoding="UTF-8"%>
                                                     </select>
                                                 </form>
                                             </td>
-                                            <td><a class="text-danger" href="delete?id=${item.id}"
-                                                    title="Delete ${item.fName} ${item.lName}">Delete</a></td>
+                                            <td><a class="text-danger" href="delete?id=${item.id}" onclick="confirmed(); return false;"
+                                                title="Delete ${item.fName} ${item.lName}" >Delete</a>
 
                                             <td> <a class="text-danger" href="#" data-toggle="modal"
                                                     data-target="#update${item.id}"

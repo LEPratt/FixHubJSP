@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -77,8 +78,6 @@ public class AppController {
 	@GetMapping({ "index", "/" })
 	String index(Model model) {
 		model.addAttribute("page", "Home");
-		model.addAttribute("msgt", "Welcome to FixHub!");
-		model.addAttribute("msgs", "Fixing Cars and Connecting People");
 		return "index";
 	}
 
@@ -118,7 +117,7 @@ public class AppController {
 			e.printStackTrace();
 		}
 
-		return "redirect:/profile";
+		return "redirect:profile";
 
 	}
 
@@ -176,7 +175,13 @@ public class AppController {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		model.addAttribute("createdOn", df.format(userService.findById(Id).get().getCreatedon()));
 		model.addAttribute("page", "Profile");
-
+		String tab = (String) model.getAttribute("active");
+		if (tab == null) {tab="tab1";}
+		
+		model.addAttribute("active", tab);
+		if (!tab.equals("tab2") && !tab.equals("tab3") && !tab.equals("tab4")) {
+		model.addAttribute("active", "tab1");
+		}
 		return "profile";
 	}
 
@@ -194,35 +199,67 @@ public class AppController {
 	}
 
 	@GetMapping("tools")
-	String tools(@SessionAttribute(value = "loggedInID", required = false) Long Id, Model model, @RequestParam(required = false) String tool) {
+	String tools(@SessionAttribute(value = "loggedInID", required = false) Long Id, Model model) {
 		model.addAttribute("page", "Tools");
-		model.addAttribute("requestList", toolRequestsRepository.findAll());
+		model.addAttribute("requestList", toolRequestsRepository.findRequests(""));
 		if (Id != null) {
 			model.addAttribute("user_account", userService.findById(Id).get());
 		}
-		if (tool != null) {
-			model.addAttribute("results", toolsRepository.findTool(tool));
-			model.addAttribute("active", "tab2");
-		} else {
-			model.addAttribute("active", "tab1");
+
+		String tab = (String) model.getAttribute("active");
+		if (tab == null) {tab="tab1";}
+		
+		model.addAttribute("active", tab);
+		if (!tab.equals("tab2") && !tab.equals("tab3")) {
+		model.addAttribute("active", "tab1");
 		}
+		
 		return "tools";
 	}
+	
+	@GetMapping("searchTools")	
+	String searchTools(@RequestParam String tool, RedirectAttributes redirect) {
+
+		try {
+			redirect.addFlashAttribute("results", toolsRepository.findTool(tool));
+			redirect.addFlashAttribute("active", "tab2");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:tools";
+	}
+	
 
 	@GetMapping("skills")
-	String skills(@SessionAttribute(value = "loggedInID", required = false) Long Id, Model model, @RequestParam(required = false) String skill) {
+	String skills(@SessionAttribute(value = "loggedInID", required = false) Long Id, Model model) {
 		model.addAttribute("page", "Skills");
-		model.addAttribute("requestList", skillRequestsRepository.findAll());
+		model.addAttribute("requestList", skillRequestsRepository.findRequests(""));
 		if (Id != null) {
 			model.addAttribute("user_account", userService.findById(Id).get());
 		}
-		if (skill != null) {
-			model.addAttribute("results", skillsRepository.findSkill(skill));
-			model.addAttribute("active", "tab2");
-		} else {
-			model.addAttribute("active", "tab1");
+
+		String tab = (String) model.getAttribute("active");
+		if (tab == null) {tab="tab1";}
+		
+		model.addAttribute("active", tab);
+		if (!tab.equals("tab2") && !tab.equals("tab3")) {
+		model.addAttribute("active", "tab1");
 		}
+		
 		return "skills";
+	}
+	
+	@GetMapping("searchSkills")	
+	String searchSkills(@RequestParam String skill, RedirectAttributes redirect) {
+
+		try {
+			redirect.addFlashAttribute("results", skillsRepository.findSkill(skill));
+			redirect.addFlashAttribute("active", "tab2");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:skills";
 	}
 
 	@GetMapping("allusers")
@@ -239,10 +276,10 @@ public class AppController {
 	}
 
 	@GetMapping("delete")
-	String delete(@RequestParam Long id, RedirectAttributes model) {
+	String delete(@RequestParam Long id, RedirectAttributes redirect) {
 		userService.deleteById(id);
-		model.addFlashAttribute("success", "User Deleted");
-		return "redirect:/allusers";
+		redirect.addFlashAttribute("success", "User Deleted");
+		return "redirect:allusers";
 	}
 
 	@PostMapping("editrole")
@@ -309,6 +346,7 @@ public class AppController {
 			addresses.setUser(user);
 			addressRepository.save(addresses);
 			redirect.addFlashAttribute("msg", "Update success");
+			redirect.addFlashAttribute("active", "tab1");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -333,6 +371,7 @@ public class AppController {
 			e.printStackTrace();
 		}
 		if (page.equalsIgnoreCase("skills")) {
+
 			return "skills";
 		} else if (page.equalsIgnoreCase("tools")) {
 			return "tools";
@@ -354,7 +393,8 @@ public class AppController {
 			Users user = userService.findById(tool.getId()).get();
 			tool.setUser(user);
 			toolsRepository.save(tool);
-			redirect.addFlashAttribute("msg", "Tool Added");
+			redirect.addFlashAttribute("msg", "Tool Added");		
+			redirect.addFlashAttribute("active", "tab3");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -368,13 +408,15 @@ public class AppController {
 		try {
 			toolsRepository.findById(id).ifPresent(a -> {
 				a.setType(type);
+				toolsRepository.save(a);
 				redirect.addFlashAttribute("msg", "Tool Updated");
+				redirect.addFlashAttribute("active", "tab3");
 
 			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/profile";
+		return "redirect:profile";
 	}
 
 	@PostMapping("editToolStatus")
@@ -383,20 +425,22 @@ public class AppController {
 		try {
 			toolsRepository.findById(id).ifPresent(a -> {
 				a.setStatus(status);
+				toolsRepository.save(a);
 				redirect.addFlashAttribute("msg", "Tool Updated");
+				redirect.addFlashAttribute("active", "tab3");
 
 			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/profile";
+		return "redirect:profile";
 	}
 
 	@GetMapping("deleteTool")
 	String deleteTool(@RequestParam Long id, RedirectAttributes redirect) {
 		toolsRepository.deleteById(id);
 		redirect.addFlashAttribute("msg", "Tool Deleted");
-
+		redirect.addFlashAttribute("active", "tab3");
 		return "redirect:profile";
 	}
 
@@ -412,7 +456,8 @@ public class AppController {
 			toolRequest.setUser(user);
 			toolRequestsRepository.save(toolRequest);
 			redirect.addFlashAttribute("msg", "Tool Request Added");
-			redirect.addFlashAttribute("active", "tab3");
+			redirect.addFlashAttribute("active", "tab3");		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -423,6 +468,7 @@ public class AppController {
 	String deleteToolRequest(@RequestParam Long id, RedirectAttributes redirect) {
 		toolRequestsRepository.deleteById(id);
 		redirect.addFlashAttribute("msg", "Tool Request Deleted");
+		redirect.addFlashAttribute("active", "tab3");
 
 		return "redirect:tools";
 	}
@@ -440,6 +486,7 @@ public class AppController {
 			skill.setUser(user);
 			skillsRepository.save(skill);
 			redirect.addFlashAttribute("msg", "Skill Added");
+			redirect.addFlashAttribute("active", "tab4");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -453,6 +500,7 @@ public class AppController {
 	String deleteSkill(@RequestParam Long id, RedirectAttributes redirect) {
 		skillsRepository.deleteById(id);
 		redirect.addFlashAttribute("msg", "Skill Request Deleted");
+		redirect.addFlashAttribute("active", "tab4");
 
 		return "redirect:profile";
 	}
@@ -471,6 +519,7 @@ public class AppController {
 			skillRequestsRepository.save(skillRequest);
 			redirect.addFlashAttribute("msg", "Request for Help Added");
 			redirect.addFlashAttribute("active", "tab3");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -481,6 +530,7 @@ public class AppController {
 	String deleteSkillRequest(@RequestParam Long id, RedirectAttributes redirect) {
 		skillRequestsRepository.deleteById(id);
 		redirect.addFlashAttribute("msg", "Request for Help Deleted");
+		redirect.addFlashAttribute("active", "tab3");
 
 		return "redirect:skills";
 	}
@@ -505,6 +555,7 @@ public class AppController {
 			book.setType(type);
 			phoneBookRepository.save(book);
 			redirect.addFlashAttribute("msg", "Phone Number Added");
+			redirect.addFlashAttribute("active", "tab1");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -519,7 +570,7 @@ public class AppController {
 
 		Pattern ext = Pattern.compile("([^\\s]+(\\.(?i)(png|jpg))$)");
 		try {
-
+				
 			if (file != null && file.isEmpty()) {
 				redirect.addFlashAttribute("error", "Error No file Selected ");
 				return "redirect:profile";
@@ -538,6 +589,7 @@ public class AppController {
 			// save image
 			webUtils.addProfilePhoto(file, id, "users");
 			redirect.addFlashAttribute("msg", "Upload success " + file.getSize() + " KB");
+			redirect.addFlashAttribute("active", "tab1");
 
 		} catch (Exception e) {
 			// e.printStackTrace);

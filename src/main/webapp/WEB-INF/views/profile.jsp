@@ -36,6 +36,19 @@ pageEncoding="UTF-8"%>
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="assets/css/paper-kit.css" rel="stylesheet" />
+  
+  <script>
+    $(document).ready(function(){
+        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab){
+            $('#myTab a[href="' + activeTab + '"]').tab('show');
+        }
+    });
+    </script>
+
 </head>
 
 <body class="profile-page sidebar-collapse font-weight-normal">
@@ -68,8 +81,7 @@ pageEncoding="UTF-8"%>
           </a>
         </div>
         <div class="name about-title clearfix">
-          <h1>${user_account.fName} <span>${user_account.lName}</span></h1>
-           
+          <h1>${user_account.fName} <span>${user_account.lName}</span></h1>           
             <br />Member Since: ${createdOn}
           </h4>
         </div>
@@ -79,23 +91,24 @@ pageEncoding="UTF-8"%>
         <div class="nav-tabs-wrapper">
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#info" role="tab">Profile Info</a>
+              <a class="nav-link ${active=='tab1'? 'active' : ''}" data-toggle="tab" href="#info" role="tab">Profile Info</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#edit" role="tab">Edit Address</a>
+              <a class="nav-link ${active=='tab2'? 'active' : ''}" data-toggle="tab" href="#edit" role="tab">Edit Address</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#tools" role="tab">My Tools</a>
+              <a class="nav-link ${active=='tab3'? 'active' : ''}" data-toggle="tab" href="#tools" role="tab">My Tools</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#skills" role="tab">My Skills</a>
+              <a class="nav-link ${active=='tab4'? 'active' : ''}" data-toggle="tab" href="#skills" role="tab">My Skills</a>
             </li>
           </ul>
         </div>
       </div>
+
       <!-- Tab panes -->
       <div class="tab-content info">
-        <div class="tab-pane active" id="info" role="tabpanel">
+        <div class="tab-pane text-center ${active=='tab1'? 'active' : ''}" id="info" role="tabpanel">
           <div class="col-md-8 ml-auto mr-auto font-weight-normal">
             <div class="row">
               <div class="col-md-6">
@@ -146,7 +159,8 @@ pageEncoding="UTF-8"%>
             </div>
           </div>
         </div>
-        <div class="tab-pane text-center" id="edit" role="tabpanel">
+
+        <div class="tab-pane text-center ${active=='tab2'? 'active' : ''}" id="edit" role="tabpanel">
           <div class="col-xs-6 col-sm-8 col-md-10 col-lg-12">
             <div class="form-group centered-form">
               <form:form action="updateContact" modelAttribute="address" method="post" class="text-left clearfix">
@@ -204,7 +218,8 @@ pageEncoding="UTF-8"%>
             </div>
           </div>
         </div>
-        <div class="tab-pane text-center" id="tools" role="tabpanel">
+
+        <div class="tab-pane text-center ${active=='tab3'? 'active' : ''}" id="tools" role="tabpanel">
           <div class="col-md-10 col-lg-12">
             <p class="text-left">
               <a href="#" data-toggle="modal" data-target="#addTool" class="btn btn-round">Add New Tool</a>
@@ -245,7 +260,7 @@ pageEncoding="UTF-8"%>
                           </select>
                       </td>
                       <td>
-                        <a href="deleteTool?id=${tools.id}" onclick="confirmed(); return false;"
+                        <a href="deleteTool?id=${tools.id}" onclick="confirmed(); return true;"
                           title="Delete ${tools.tool}" class="btn btn-sm btn-round">x<i class="tf-ion-close"></i></a>
                       </td>
                     </tr>
@@ -255,7 +270,8 @@ pageEncoding="UTF-8"%>
             </c:if>
           </div>
         </div>
-        <div class="tab-pane text-center" id="skills" role="tabpanel">
+
+        <div class="tab-pane text-center ${active=='tab4'? 'active' : ''}" id="skills" role="tabpanel">
           <div class="col-md-10 col-lg-12">
             <p class="text-left">
               <a href="#" data-toggle="modal" data-target="#addSkill" class="btn btn-round">Add New Skill</a>
@@ -348,7 +364,6 @@ pageEncoding="UTF-8"%>
     </div>
   </div>
 
-
   <div class="modal fade" id="addTool">
     <div class="modal-dialog modal-sm">
       <div class="modal-content"> -->
@@ -383,7 +398,6 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
   </div>
-
 
   <div class="modal fade" id="addSkill">
     <div class="modal-dialog modal-sm">
@@ -434,15 +448,8 @@ pageEncoding="UTF-8"%>
   <!--  Google Maps Plugin    -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!--  Preview Image Plugin    -->
-  <script type="text/javascript">function preview_image(event) {
-      var reader = new FileReader();
-      reader.onload = function () {
-        var output = document.getElementById('output_image');
-        output.classList.add("preview");
-        output.src = reader.result;
-      }
-      reader.readAsDataURL(event.target.files[0]);
-    }</script>
+  
+    
 </body>
 
 </html>

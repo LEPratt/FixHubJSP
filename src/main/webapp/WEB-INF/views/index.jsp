@@ -48,11 +48,22 @@ pageEncoding="UTF-8"%>
     <!-- End Navbar -->
 
 
-    <div class="page-header" data-parallax="true" style="background-image: url('assets/img/holdingwrenchdark.jpg');">
+    <div class="page-header page-header-small" data-parallax="true" style="background-image: url('assets/img/holdingwrenchdark.jpg');">
 
-
-        <h3 class="presentation-title">${msgt}</h3>
-        <h3 class="presentation-subtitle ">${msgs}</h3>
+        
+        <h1 class="index-title pl-3">Welcome to Fix<span>Hub</span>!</h1>
+        <h3 class="presentation-subtitle ">${msg}</h3>
+    </div>
+    <div class="section about-content paddingTB60 gray-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 col-lg-12">
+              <div class="about-title clearfix">
+                <h1>Fixing Cars and Connecting <span>People</span></h1>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 
     <!--   Footer   -->

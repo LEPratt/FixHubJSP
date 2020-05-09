@@ -12,7 +12,9 @@ import fixhub.app.model.Users;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
 	
-	Users findById(String id);	
+	Optional<Users> findById(Long id);
+	
+	void deleteById(Long id);
 
 	Optional<Users> findByEmail(String email);
 	

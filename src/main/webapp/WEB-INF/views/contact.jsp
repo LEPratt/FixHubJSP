@@ -40,7 +40,6 @@ pageEncoding="UTF-8"%>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/paper-kit.css" rel="stylesheet" />
 
-
 </head>
 
 <body class="contact-page sidebar-collapse font-weight-normal">
@@ -48,12 +47,21 @@ pageEncoding="UTF-8"%>
     <jsp:include page="header.jsp" />
     <!-- End Navbar -->
 
-
-    <div class="page-header page-header-small" data-parallax="true"
+    <div class="page-header page-header-xs" data-parallax="true"
         style="background-image: url('assets/img/wrench.jpg');">
         <h3 class="text-center text-success">${msg}</h3>
     </div>
-
+    <div class="section about-content paddingTB60 gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-12">
+                    <div class="about-title clearfix">
+                        <h1>Contact <span>Us</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="contact-section">
         <div class="container">
             <div class="row">
@@ -62,7 +70,8 @@ pageEncoding="UTF-8"%>
                 <div class="contact-form col-md-6 ">
                     <form action="sendemail" method="post" id="contact-form" role="form">
                         <div class="form-group">
-                            <input type="text" placeholder="Your Name" class="form-control" name="name" id="name" required>
+                            <input type="text" placeholder="Your Name" class="form-control" name="name" id="name"
+                                required>
                         </div>
                         <div class="form-group">
                             <input type="hidden" name="to" id="to" value="fixhub1313@gmail.com">
@@ -115,9 +124,7 @@ pageEncoding="UTF-8"%>
             </div> <!-- end row -->
         </div> <!-- end container -->
     </div>
-
-
-
+    
     <!--   Footer   -->
 
     <jsp:include page="footer.jsp" />

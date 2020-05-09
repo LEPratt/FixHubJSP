@@ -1,13 +1,12 @@
 package fixhub.app.model;
 
-import java.util.Date;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="toolRequsets")
+@Table(name="ToolRequests")
 
 public class ToolRequests {
 	
