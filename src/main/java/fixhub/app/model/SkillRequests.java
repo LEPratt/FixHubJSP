@@ -1,7 +1,5 @@
 package fixhub.app.model;
 
-import java.util.Date;
-
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

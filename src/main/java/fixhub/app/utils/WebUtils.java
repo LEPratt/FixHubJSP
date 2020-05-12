@@ -62,6 +62,7 @@ public class WebUtils {
 	}
 
 	public void addProfilePhoto(MultipartFile file, long id, String folder) throws IllegalStateException, IOException {
+
 		try {
 // save dir
 			String destDir = request.getSession().getServletContext().getRealPath(UPLOADED_FOLDER) + File.separator
@@ -82,6 +83,7 @@ public class WebUtils {
 
 			File doc = new File(destDir + File.separator + img);
 			if (doc.exists()) {
+				System.out.println("*******************"+doc);
 				doc.delete();
 			}
 

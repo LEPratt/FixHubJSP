@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+3<%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -36,19 +36,7 @@ pageEncoding="UTF-8"%>
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="assets/css/paper-kit.css" rel="stylesheet" />
-  
-  <script>
-    $(document).ready(function(){
-        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-            localStorage.setItem('activeTab', $(e.target).attr('href'));
-        });
-        var activeTab = localStorage.getItem('activeTab');
-        if(activeTab){
-            $('#myTab a[href="' + activeTab + '"]').tab('show');
-        }
-    });
-    </script>
-
+   
 </head>
 
 <body class="profile-page sidebar-collapse font-weight-normal">
@@ -448,6 +436,16 @@ pageEncoding="UTF-8"%>
   <!--  Google Maps Plugin    -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!--  Preview Image Plugin    -->
+  <script type="text/javascript">function preview_image(event) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById('output_image');
+      output.classList.add("preview");
+      output.src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  }</script>
+  
   
     
 </body>

@@ -60,15 +60,13 @@ pageEncoding="UTF-8"%>
             <div class="row">
                 <div class="col-lg-12 col-md-10 col-sm-8">
                     <div class="about-title clearfix">
-                        <h1>About <span>FixHub</span></h1>
-                        <h3>Fixing Cars and Connecting People</h3>
-                        <p class="about-padding">FixHub is a web application to help people keep their cars on the road
-                            a little longer. FixHub allows users to create a community where they can find nearby users
-                            to help them with auto repairs.</p>
-                        <p>Users can post requests for assistance with things like oil changes or brake pad replacement.
-                        </p>
-                        <p> A tool section allows users to post requests to borrow or rent specialty tools like bearing
-                            pullers or torque wrenches. </p>
+                        <h1>About <span>Us</span></h1>
+                        <h3>FixHub was inspired by a real 30 minute job that took 4 hours due to lack of a specialty tool.</h3>
+                        <p class="about-padding">FixHub is a Java based web application created by Larry Pratt during the Full Stack Java Developer program at Claim Academy.</p>
+                        <p>This MVC/JSP version was built on a Spring/Hibernate framework and MySQL handles the database needs. 
+                        <p>The UI was created with HTML, CSS and Javascript heavily altering a Bootstrap template.</p>                        
+                        <p>New versions will have distance based search filters to find users close to you and could expand to include home repairs and even lawn and garden.</p>
+                        <p>Please check out my LinkedIn and GitHub!  Keep an eye out for the React version currently in the works!</p>
 
                         <div class="about-icons">
                             <ul>

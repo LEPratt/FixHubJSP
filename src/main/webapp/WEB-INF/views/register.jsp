@@ -48,97 +48,119 @@ pageEncoding="UTF-8"%>
 	<!-- End Navbar -->
 
 
-	<div class="page-header" data-parallax="true" style="background-image: url('assets/img/darkdiamondplate.jpg');">
+	<div class="page-header page-header-xs" data-parallax="true"
+		style="background-image: url('assets/img/darkdiamondplate.jpg');">
 		<div class="filter"></div>
+
+
+
 		<div class="motto text-center">
 			<h2 class="text-centered">${msg} ${error} ${expired}</h2>
 		</div>
 
+	</div>
+	<div class="section about-content paddingTB60 gray-bg">
 		<div class="container">
-			<div class="col-md-8">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="card">
-							<div class="card-body">
-								<h3 class="card-title text-center">Please sign up for FixHub <br><small>It's
-										free!</small>
-								</h3>
-								<div class="row centered-form"></div>
-								<form:form class="text-left" action="register" method="post" modelAttribute="user">
-									<div class="row">
-										<div class="col-xs-6 col-sm-6 col-md-6">
-											<div class="form-group">
-												<form:input type="text" path="fName" placeholder="Enter First Name" />
-												<br>
-												<form:errors path="fName" class="text-danger text-center" />
+			<div class="row">
+				<div class="col-md-10 col-lg-12">
+					<div class="about-title clearfix">
+						<h1>Fix<span>Hub</span> Registration</h1>
+						<h3>Sign up and create your own requests for tools or help!</h3>
+					</div>
+
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-body">
+										<h3 class="card-title text-center">Please sign up for FixHub <br><small>It's
+												free!</small>
+										</h3>
+										<div class="row centered-form"></div>
+										<form:form class="text-left" action="register" method="post"
+											modelAttribute="user">
+											<div class="row">
+												<div class="col-md-4 col-lg-6">
+													<div class="form-group">
+														<form:input type="text" path="fName"
+															placeholder="Enter First Name" />
+														<br>
+														<form:errors path="fName" class="text-danger text-center" />
+													</div>
+												</div>
+												<div class="col-md-4 col-lg-6">
+													<div class="form-group ">
+														<form:input type="text" path="tel"
+															placeholder="Enter Phone Number" />
+														<br>
+														<form:errors path="tel" class="text-danger text-center" />
+													</div>
+												</div>
 											</div>
-										</div>
-										<div class="col-xs-6 col-sm-6 col-md-6">
-											<div class="form-group ">
-												<form:input type="text" path="tel" placeholder="Enter Phone Number" />
-												<br>
-												<form:errors path="tel" class="text-danger text-center" />
+											<div class="row">
+												<div class="col-md-4 col-lg-6">
+													<div class="form-group">
+														<form:input type="text" path="lName"
+															placeholder="Enter Last Name" />
+														<br>
+														<form:errors path="lName" class="text-danger text-center" />
+													</div>
+
+												</div>
+												<div class="col-md-4 col-lg-6">
+													<div class="form-group">
+														<select name="type">
+															<option value="Select">Select Type</option>
+															<option value="Mobile">Mobile </option>
+															<option value="Home">Home</option>
+															<option value="Work">Work</option>
+														</select>
+													</div>
+												</div>
+
 											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-xs-6 col-sm-6 col-md-6">
-											<div class="form-group">
-												<form:input type="text" path="lName" placeholder="Enter Last Name" />
-												<br>
-												<form:errors path="lName" class="text-danger text-center" />
+											<div class="row">
+												<div class="col-md-4 col-lg-6">
+													<div class="form-group ">
+														<form:input type="email" path="email"
+															placeholder="Enter Email" />
+														<br>
+														<form:errors path="email" class="text-danger text-center" />
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-4 col-lg-6">
+													<div class="form-group">
+														<form:input type="password" path="password"
+															placeholder="Enter Password" />
+														<br>
+														<form:errors path="password" class="text-danger text-center" />
+													</div>
+												</div>
+												<div class="col-md-4 col-lg-6">
+													<div class="form-group">
+														<form:input type="password" path="password2"
+															placeholder="Confirm Password" />
+														<br>
+														<form:errors path="password2" class="text-danger text-center" />
+													</div>
+												</div>
 											</div>
 
-										</div>
-										<div class="col-xs-6 col-sm-6 col-md-6">
-											<div class="form-group">
-												<select name="type">
-													<option value="Select">Select Type</option>
-													<option value="Mobile">Mobile </option>
-													<option value="Home">Home</option>
-													<option value="Work">Work</option>
-												</select>
-											</div>
-										</div>
-
+											<input type="submit" value="Register" class="btn btn-drk btn-default">
+										</form:form>
 									</div>
-									<div class="row">
-										<div class="col-xs-6 col-sm-6 col-md-6">
-											<div class="form-group ">
-												<form:input type="email" path="email" placeholder="Enter Email" />
-												<br>
-												<form:errors path="email" class="text-danger text-center" />
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-xs-6 col-sm-6 col-md-6">
-											<div class="form-group">
-												<form:input type="password" path="password"
-													placeholder="Enter Password" />
-												<br>
-												<form:errors path="password" class="text-danger text-center" />
-											</div>
-										</div>
-										<div class="col-xs-6 col-sm-6 col-md-6">
-											<div class="form-group">
-												<form:input type="password" path="password2"
-													placeholder="Confirm Password" />
-												<br>
-												<form:errors path="password2" class="text-danger text-center" />
-											</div>
-										</div>
-									</div>
-
-									<input type="submit" value="Register" class="btn btn-drk btn-default">
-								</form:form>
+								</div>
 							</div>
 						</div>
 					</div>
+					<p class="about-padding">Don't forget to add an address on your profile page! <br /></p>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 
 
 	<!--   Footer   -->

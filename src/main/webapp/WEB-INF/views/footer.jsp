@@ -24,9 +24,9 @@ pageEncoding="UTF-8"%>
                     <i class="fa fa-github"></i>                        
                 </a>
             </li>
-            <li>
-                <a class="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom"
-                    href="https://www.github.com/LEPratt" target="_blank">
+            <li class="nav-item">
+                <a class="nav-link" rel="tooltip" title="Check me out on LinkedIn" data-placement="bottom"
+                href="https://www.linkedin.com/in/lepratt" target="_blank">
                     <i class="fa fa-linkedin"></i>
                 </a>
             </li>

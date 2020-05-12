@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -565,8 +564,9 @@ public class AppController {
 
 	}
 
-	@PostMapping("/addimages")
+	@PostMapping("addimages")
 	public String addprofileImg(@RequestParam("file") MultipartFile file, @RequestParam Long id, RedirectAttributes redirect) {
+		System.out.println("*****************************call addimages");
 
 		Pattern ext = Pattern.compile("([^\\s]+(\\.(?i)(png|jpg))$)");
 		try {
