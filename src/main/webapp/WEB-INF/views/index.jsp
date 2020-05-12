@@ -61,7 +61,7 @@ pageEncoding="UTF-8"%>
                 <div class="col-md-10 col-lg-12">
                     <div class="about-title clearfix">
                         <h1>Fixing Cars and Connecting <span>People</span></h1>
-                        <p class="about-padding"><br /> is a web application to help people keep their cars on the road
+                        <p class="about-padding"><br />FixHub is a web application to help people keep their cars on the road
                             a little longer. </p>
                         <p>FixHub allows users to create a community of nearby users
                             to help each other with auto repairs.</p>
