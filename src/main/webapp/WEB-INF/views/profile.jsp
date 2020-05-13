@@ -246,6 +246,7 @@ pageEncoding="UTF-8"%>
                             <option value="Available">Available</option>
                             <option value="Unavailable">Unavailable</option>
                           </select>
+                        </form>
                       </td>
                       <td>
                         <a href="deleteTool?id=${tools.id}" onclick="confirmed(); return true;"
